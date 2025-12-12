@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>kelas10dkvmendunia</title>
+  <style>
+    body { font-family: Arial, sans-serif; background:#f4f4f4; padding:20px; }
+    h1, h2 { color:#333; }
+    .container { background:white; padding:20px; border-radius:12px; max-width:900px; margin:auto; box-shadow:0 4px 12px rgba(0,0,0,0.1); }
+    .section { margin-bottom:40px; }
+    table { width:100%; border-collapse:collapse; margin-top:10px; }
+    table, th, td { border:1px solid #ccc; }
+    th, td { padding:10px; text-align:left; }
+    input, button, select { padding:8px; margin-top:5px; border-radius:6px; border:1px solid #999; }
+    button { cursor:pointer; background:#4CAF50; color:white; border:none; }
+    button:hover { opacity:0.9; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>kelas10dkvmendunia</h1>
+    <!-- Biodata -->
+    <div class="section" id="biodata">
+      <h2>Biodata Murid</h2>
+      <input id="namaMurid" placeholder="Nama Murid" />
+      <input id="nisMurid" placeholder="NIS" />
+      <button onclick="tambahBiodata()">Tambah</button>
+      <table>
+        <thead>
+          <tr><th>Nama</th><th>NIS</th></tr>
+        </thead>
+        <tbody id="biodataList"></tbody>
+      </table>
+    </div>
+
+    <!-- Absen -->
+    <div class="section" id="absen">
+      <h2>Daftar Absen</h2>
+      <input id="namaAbsen" placeholder="Nama Murid" />
+      <select id="statusAbsen">
+        <option>Hadir</option>
+        <option>Izin</option>
+        <option>Sakit</option>
+        <option>Alpa</option>
+      </select>
+      <button onclick="tambahAbsen()">Submit</button>
+      <table>
+        <thead>
+          <tr><th>Nama</th><th>Status</th><th>Waktu</th></tr>
+        </thead>
+        <tbody id="absenList"></tbody>
+      </table>
+    </div>
+
+    <!-- Keuangan -->
+    <div class="section" id="keuangan">
+      <h2>Daftar Keuangan Mingguan</h2>
+      <input id="namaBayar" placeholder="Nama Murid" />
+      <input id="jumlahBayar" type="number" placeholder="Jumlah (Rp)" />
+      <button onclick="tambahKeuangan()">Catat</button>
+      <table>
+        <thead>
+          <tr><th>Nama</th><th>Jumlah</th><th>Waktu</th></tr>
+        </thead>
+        <tbody id="keuanganList"></tbody>
+      </table>
+    </div>
+
+  </div>
+  <script>
+    function tambahBiodata() {
+      const nama = document.getElementById("namaMurid").value;
+      const nis = document.getElementById("nisMurid").value;
+      if (!nama || !nis) return;
+      document.getElementById("biodataList").innerHTML += `<tr><td>${nama}</td><td>${nis}</td></tr>`;
+      document.getElementById("namaMurid").value = "";
+      document.getElementById("nisMurid").value = "";
+    }
+
+    function tambahAbsen() {
+      const nama = document.getElementById("namaAbsen").value;
+      const status = document.getElementById("statusAbsen").value;
+      if (!nama) return;
+      const waktu = new Date().toLocaleString();
+      document.getElementById("absenList").innerHTML += `<tr><td>${nama}</td><td>${status}</td><td>${waktu}</td></tr>`;
+      document.getElementById("namaAbsen").value = "";
+    }
+
+    function tambahKeuangan() {
+      const nama = document.getElementById("namaBayar").value;
+      const jumlah = document.getElementById("jumlahBayar").value;
+      if (!nama || !jumlah) return;
+      const waktu = new Date().toLocaleString();
+      document.getElementById("keuanganList").innerHTML += `<tr><td>${nama}</td><td>Rp ${jumlah}</td><td>${waktu}</td></tr>`;
+      document.getElementById("namaBayar").value = "";
+      document.getElementById("jumlahBayar").value = "";
+    }
+  </script>
+</body>
+</html>
